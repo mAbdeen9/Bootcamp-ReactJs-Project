@@ -1,10 +1,27 @@
 import React from "react";
+import classes from "./Header.module.css";
 import { useState } from "react";
 import { Fragment } from "react";
-import classes from "./Header.module.css";
+import myLink from "../../helpers/myNavLink";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
+
+  const home = myLink({
+    link: (
+      <span className={classes.logo}>
+        Real<i className="bi bi-geo-fill"></i>App
+      </span>
+    ),
+    path: "/home",
+    classes: classes,
+  });
+
+  const about = myLink({
+    link: <span> About </span>,
+    path: "/about",
+    classes: classes,
+  });
 
   const handelShowMenu = () => setShowMenu((state) => !state);
 
@@ -14,10 +31,8 @@ function Header() {
         <div className="container">
           <div className={classes.nav_bar}>
             <div>
-              <span className={classes.logo}>
-                Real<i className="bi bi-geo-fill"></i>App
-              </span>
-              <span> About </span>
+              {home}
+              {about}
             </div>
             <div className={classes.links}>
               <span>Sign in</span>
