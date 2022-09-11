@@ -2,26 +2,11 @@ import React from "react";
 import classes from "./Header.module.css";
 import { useState } from "react";
 import { Fragment } from "react";
-import myLink from "../../helpers/myNavLink";
+import links from "../../helpers/links";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
-
-  const home = myLink({
-    link: (
-      <span className={classes.logo}>
-        Real<i className="bi bi-geo-fill"></i>App
-      </span>
-    ),
-    path: "/home",
-    classes: classes,
-  });
-
-  const about = myLink({
-    link: <span> About </span>,
-    path: "/about",
-    classes: classes,
-  });
+  const { home, about, SignIn, SignUp, SignUpBiz } = links(classes);
 
   const handelShowMenu = () => setShowMenu((state) => !state);
 
@@ -35,9 +20,9 @@ function Header() {
               {about}
             </div>
             <div className={classes.links}>
-              <span>Sign in</span>
-              <span>Sign up</span>
-              <span>Sign up business</span>
+              {SignIn}
+              {SignUp}
+              {SignUpBiz}
             </div>
             <div className={classes.burger}>
               <div onClick={handelShowMenu} className={classes.boxBurger}>
@@ -48,10 +33,12 @@ function Header() {
         </div>
       </div>
       {showMenu && (
-        <div className={`container ${classes.mobile_menu}`}>
-          <div>Sign in</div>
-          <div>Sign up</div>
-          <div>Sign up business</div>
+        <div className={`container-fluid ${classes.mobile_box}  `}>
+          <div className={`container ${classes.mobile_menu}`}>
+            {SignIn}
+            {SignUp}
+            {SignUpBiz}
+          </div>
         </div>
       )}
     </Fragment>

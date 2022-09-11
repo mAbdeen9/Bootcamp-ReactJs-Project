@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import Container from "./components/Container/Container";
 import Header from "./components/Header/Header";
 import Router from "./components/Router/Router";
 
@@ -9,7 +10,9 @@ function App() {
         <Header />
       </header>
       <main>
-        <Router />
+        <Container>
+          <Router />
+        </Container>
       </main>
     </Fragment>
   );
