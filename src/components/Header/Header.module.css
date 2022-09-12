@@ -31,9 +31,16 @@
   text-decoration: none;
   color: inherit;
 }
+.notActiveLink :hover {
+  color: #61dafb;
+}
 
 .activeLink {
   text-decoration: none;
+  color: #60d9f9;
+}
+
+.activeLink :hover {
   color: #60d9f9;
 }
 

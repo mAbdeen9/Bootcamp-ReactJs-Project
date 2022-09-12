@@ -6,13 +6,15 @@ import links from "../../helpers/links";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
-  const { home, about, SignIn, SignUp, SignUpBiz } = links(classes);
-
   const handelShowMenu = () => setShowMenu((state) => !state);
+  const { home, about, SignIn, SignUp, SignUpBiz } = links(
+    classes,
+    handelShowMenu
+  );
 
   return (
     <Fragment>
-      <div className={`container-fluid ${classes.nav_box}  `}>
+      <div className={`container-fluid ${classes.nav_box}`}>
         <div className="container">
           <div className={classes.nav_bar}>
             <div>
@@ -33,7 +35,7 @@ function Header() {
         </div>
       </div>
       {showMenu && (
-        <div className={`container-fluid ${classes.mobile_box}  `}>
+        <div className={`container-fluid ${classes.mobile_box}`}>
           <div className={`container ${classes.mobile_menu}`}>
             {SignIn}
             {SignUp}

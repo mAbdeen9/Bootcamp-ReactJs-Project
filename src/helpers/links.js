@@ -15,7 +15,7 @@ const myLink = (props) => {
   );
 };
 
-function links(classes) {
+function links(classes, handelShowMenu) {
   const home = myLink({
     link: (
       <span className={classes.logo}>
@@ -33,19 +33,19 @@ function links(classes) {
   });
 
   const SignIn = myLink({
-    link: <span> Sign in </span>,
+    link: <span onClick={handelShowMenu}> Sign in </span>,
     path: "/sign-in",
     classes: classes,
   });
 
   const SignUp = myLink({
-    link: <span> Sign up </span>,
+    link: <span onClick={handelShowMenu}> Sign up </span>,
     path: "/sign-up",
     classes: classes,
   });
 
   const SignUpBiz = myLink({
-    link: <span> Sign up business </span>,
+    link: <span onClick={handelShowMenu}> Sign up business </span>,
     path: "/sing-up-biz",
     classes: classes,
   });
