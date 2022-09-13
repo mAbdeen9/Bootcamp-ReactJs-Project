@@ -2,6 +2,14 @@ import Joi from "joi";
 
 function useValidate() {
   //
+
+  const validateName = (name) => {
+    const rules = Joi.object({
+      name: Joi.string().required().min(2).max(20),
+    });
+    return rules.validate(name);
+  };
+
   const validateEmail = (email) => {
     const rules = Joi.object({
       email: Joi.string().email({ tlds: { allow: false } }),
@@ -16,7 +24,7 @@ function useValidate() {
     return rules.validate(password);
   };
 
-  return { validateEmail, validatePassword };
+  return { validateEmail, validatePassword, validateName };
 }
 
 export default useValidate;

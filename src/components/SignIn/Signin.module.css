@@ -1,14 +1,24 @@
 .box {
   margin-top: 40px;
+  text-align: center;
 }
 
 .form_box {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   gap: 16px;
   font-size: 1.1rem;
+  margin-top: 40px;
+}
+
+.form_box input {
+  width: 300px;
+}
+.form_box label {
+  width: 300px;
+  text-align: start;
 }
 
 .invaild_email {

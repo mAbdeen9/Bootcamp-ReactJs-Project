@@ -10,18 +10,14 @@ function SignIn() {
   const { validateEmail, validatePassword } = useValidate();
   const [emailHasError, setEmailHasError] = useState(false);
   const [passwordHasError, setPasswordHasError] = useState(false);
-  const [emailIsTouched, setEmailIsTouched] = useState(false);
-  const [passwordIsTouched, setpasswordIsTouched] = useState(false);
 
   const checkEmail = () => {
-    setEmailIsTouched(true);
     const { error } = validateEmail({ email: emailValue.current.value });
     if (error) setEmailHasError(true);
     if (!error) setEmailHasError(false);
   };
 
   const checkPassword = () => {
-    setpasswordIsTouched(true);
     const { error } = validatePassword({
       password: passwordValue.current.value,
     });
@@ -29,8 +25,7 @@ function SignIn() {
     if (!error) setPasswordHasError(false);
   };
 
-  const validForm =
-    !emailHasError && !passwordHasError && emailIsTouched && passwordIsTouched;
+  const validForm = !emailHasError && !passwordHasError;
 
   const handleSubmit = (e) => {
     e.preventDefault();

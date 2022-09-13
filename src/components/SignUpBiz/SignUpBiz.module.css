@@ -1,0 +1,40 @@
+.box {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.form_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 1.1rem;
+  margin-top: 40px;
+}
+
+.form_box input {
+  width: 300px;
+}
+.form_box label {
+  width: 300px;
+  text-align: start;
+}
+
+.invaild_email {
+  color: #dc3444;
+  font-size: 15px;
+}
+
+.invaild_password {
+  color: #dc3444;
+  font-size: 15px;
+}
+
+.btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #069861;
+  color: white;
+}
