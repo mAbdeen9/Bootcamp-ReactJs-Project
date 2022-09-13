@@ -19,7 +19,7 @@ function useValidate() {
 
   const validatePassword = (password) => {
     const rules = Joi.object({
-      password: Joi.string().required().min(4).max(10),
+      password: Joi.string().required().min(6).max(12),
     });
     return rules.validate(password);
   };

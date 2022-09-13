@@ -1,10 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import httpRequest from "../../helpers/httpReq";
 import useValidate from "../../hooks/useValidate";
 import classes from "./SignUpBiz.module.css";
 
 function SignUpBiz() {
+  const navigate = useNavigate();
   const emailValue = useRef();
   const passwordValue = useRef();
   const nameValue = useRef();
@@ -35,14 +39,23 @@ function SignUpBiz() {
   };
   const validForm = !emailHasError && !passwordHasError && !nameHasError;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validForm) return;
     const userInfo = {
       email: emailValue.current.value,
       password: passwordValue.current.value,
+      name: nameValue.current.value,
+      biz: true,
     };
-    console.log(userInfo);
+
+    try {
+      const res = await httpRequest("POST", "api/users/", "", userInfo);
+      toast(`${res.data.name} you successfully sign up  `);
+      navigate("/sign-in");
+    } catch (err) {
+      toast(err.response.data);
+    }
   };
 
   return (
@@ -66,7 +79,9 @@ function SignUpBiz() {
             />
             <br />
             {nameHasError && (
-              <span className={classes.invaild_email}> invalid name !</span>
+              <span className={classes.invaild_email}>
+                "Name" length at least 2 characters
+              </span>
             )}
           </div>
           <div>
@@ -84,7 +99,9 @@ function SignUpBiz() {
             />
             <br />
             {emailHasError && (
-              <span className={classes.invaild_email}> invalid email !</span>
+              <span className={classes.invaild_email}>
+                "Email" must be a valid email
+              </span>
             )}
           </div>
           <div>
@@ -104,7 +121,7 @@ function SignUpBiz() {
             <br />
             {passwordHasError && (
               <span className={classes.invaild_password}>
-                invalid password !
+                "Password" length at least 6 characters
               </span>
             )}
           </div>
