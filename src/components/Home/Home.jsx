@@ -4,7 +4,7 @@ import classes from "./Home.module.css";
 function Home() {
   return (
     <div className={classes.box}>
-      <h3 className={classes.gradient_text}>ReactJs APP </h3>
+      <h3 className={classes.gradient_text}>React APP </h3>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate,
         provident. Error aliquam natus suscipit, assumenda quaerat molestiae rem
