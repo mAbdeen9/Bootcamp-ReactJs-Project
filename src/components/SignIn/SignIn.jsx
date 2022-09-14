@@ -5,10 +5,12 @@ import { useState } from "react";
 import { useRef } from "react";
 import httpRequest from "../../helpers/httpReq";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
   const emailValue = useRef();
   const passwordValue = useRef();
+  const navigate = useNavigate();
   const { validateEmail, validatePassword } = useValidate();
   const [emailHasError, setEmailHasError] = useState(false);
   const [passwordHasError, setPasswordHasError] = useState(false);
@@ -41,6 +43,8 @@ function SignIn() {
       const response = await httpRequest("POST", "api/auth", "", userInfo);
       localStorage.setItem("meta-data", JSON.stringify(response.data.token));
       toast("Successfully logged in 👋🏻 ");
+      navigate("/", { replace: true });
+      window.location.reload(true);
     } catch (err) {
       toast(err.response.data);
     }

@@ -2,8 +2,13 @@ import jwtDecode from "jwt-decode";
 import getToken from "./getToken";
 
 const getUser = () => {
-  const decode = jwtDecode(getToken());
-  return decode;
+  try {
+    const token = getToken();
+    const decode = jwtDecode(token);
+    return decode;
+  } catch (err) {
+    return err.message;
+  }
 };
 
 export default getUser;

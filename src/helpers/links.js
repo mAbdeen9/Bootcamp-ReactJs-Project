@@ -15,7 +15,7 @@ const myLink = (props) => {
   );
 };
 
-function links(classes, handelShowMenu) {
+function links(classes, handelShowMenu, signOut) {
   const home = myLink({
     link: (
       <span className={classes.logo}>
@@ -50,7 +50,13 @@ function links(classes, handelShowMenu) {
     classes: classes,
   });
 
-  return { home, about, SignIn, SignUp, SignUpBiz };
+  const SignOut = myLink({
+    link: <span onClick={signOut}>Sign out</span>,
+    path: "/",
+    classes: classes,
+  });
+
+  return { home, about, SignIn, SignUp, SignUpBiz, SignOut };
 }
 
 export default links;

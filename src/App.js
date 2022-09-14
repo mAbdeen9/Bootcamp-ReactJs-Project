@@ -1,11 +1,20 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Container from "./components/Container/Container";
 import Header from "./components/Header/Header";
 import Router from "./components/Router/Router";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import getUser from "./helpers/getUser";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userID = getUser();
+    if (userID._id) setUser(userID);
+  }, []);
+  console.log(123);
+
   return (
     <Fragment>
       <ToastContainer
@@ -20,11 +29,11 @@ function App() {
         pauseOnHover
       />
       <header>
-        <Header />
+        <Header user={user} />
       </header>
       <main>
         <Container>
-          <Router />
+          <Router user={user} />
         </Container>
       </main>
     </Fragment>

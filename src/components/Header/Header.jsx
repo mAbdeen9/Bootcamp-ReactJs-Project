@@ -3,13 +3,21 @@ import classes from "./Header.module.css";
 import { useState } from "react";
 import { Fragment } from "react";
 import links from "../../helpers/links";
+import { useNavigate } from "react-router-dom";
 
-function Header() {
+function Header({ user }) {
   const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
+  const signOut = () => {
+    localStorage.clear("meta-data");
+    navigate("/home", { replace: true });
+    window.location.reload(true);
+  };
   const handelShowMenu = () => setShowMenu((state) => !state);
-  const { home, about, SignIn, SignUp, SignUpBiz } = links(
+  const { home, about, SignIn, SignUp, SignUpBiz, SignOut } = links(
     classes,
-    handelShowMenu
+    handelShowMenu,
+    signOut
   );
 
   return (
@@ -22,9 +30,10 @@ function Header() {
               {about}
             </div>
             <div className={classes.links}>
-              {SignIn}
-              {SignUp}
-              {SignUpBiz}
+              {!user && SignIn}
+              {!user && SignUp}
+              {!user && SignUpBiz}
+              {user && SignOut}
             </div>
             <div className={classes.burger}>
               <div onClick={handelShowMenu} className={classes.boxBurger}>
@@ -37,9 +46,10 @@ function Header() {
       {showMenu && (
         <div className={`container-fluid ${classes.mobile_box}`}>
           <div className={`container ${classes.mobile_menu}`}>
-            {SignIn}
-            {SignUp}
-            {SignUpBiz}
+            {!user && SignIn}
+            {!user && SignUp}
+            {!user && SignUpBiz}
+            {user && SignOut}
           </div>
         </div>
       )}
