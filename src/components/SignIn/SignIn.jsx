@@ -1,8 +1,10 @@
 import React from "react";
+import classes from "./Signin.module.css";
+import useValidate from "../../hooks/useValidate";
 import { useState } from "react";
 import { useRef } from "react";
-import useValidate from "../../hooks/useValidate";
-import classes from "./Signin.module.css";
+import httpRequest from "../../helpers/httpReq";
+import { toast } from "react-toastify";
 
 function SignIn() {
   const emailValue = useRef();
@@ -27,14 +29,21 @@ function SignIn() {
 
   const validForm = !emailHasError && !passwordHasError;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validForm) return;
     const userInfo = {
       email: emailValue.current.value,
       password: passwordValue.current.value,
     };
-    console.log(userInfo);
+
+    try {
+      const response = await httpRequest("POST", "api/auth", "", userInfo);
+      localStorage.setItem("meta-data", JSON.stringify(response.data.token));
+      toast("Successfully logged in 👋🏻 ");
+    } catch (err) {
+      toast(err.response.data);
+    }
   };
 
   return (
