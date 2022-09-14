@@ -1,0 +1,20 @@
+.footer_box {
+  background-color: #202329;
+  min-height: 10vh;
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 0;
+}
+
+.footerInner_box {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}

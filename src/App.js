@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import Container from "./components/Container/Container";
 import Header from "./components/Header/Header";
 import Router from "./components/Router/Router";
+import Footer from "./components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import getUser from "./helpers/getUser";
@@ -35,6 +36,7 @@ function App() {
           <Router user={user} />
         </Container>
       </main>
+      <Footer />
     </Fragment>
   );
 }

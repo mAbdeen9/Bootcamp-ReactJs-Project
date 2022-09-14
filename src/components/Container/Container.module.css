@@ -1,7 +1,6 @@
 .main {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: calc(90vh - 80px);
   width: 100%;
   color: white;
-  position: absolute;
 }
