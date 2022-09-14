@@ -13,7 +13,6 @@ function App() {
     const userID = getUser();
     if (userID._id) setUser(userID);
   }, []);
-  console.log(123);
 
   return (
     <Fragment>

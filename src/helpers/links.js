@@ -46,7 +46,7 @@ function links(classes, handelShowMenu, signOut) {
 
   const SignUpBiz = myLink({
     link: <span onClick={handelShowMenu}> Sign up business </span>,
-    path: "/sing-up-biz",
+    path: "/sign-up-biz",
     classes: classes,
   });
 
