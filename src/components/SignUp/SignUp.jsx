@@ -1,47 +1,21 @@
 import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
-import useValidate from "../../hooks/useValidate";
 import classes from "./SignUp.module.css";
 import httpRequest from "../../helpers/httpReq";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import useInputChecker from "../../hooks/useInputChecker";
 
 function SignUp() {
   const navigate = useNavigate();
   const emailValue = useRef();
   const passwordValue = useRef();
   const nameValue = useRef();
-  const { validateEmail, validatePassword, validateName } = useValidate();
   const [emailHasError, setEmailHasError] = useState(false);
   const [passwordHasError, setPasswordHasError] = useState(false);
   const [nameHasError, setNameHasError] = useState(false);
-
-  const checkEmail = () => {
-    let delay;
-    clearTimeout(delay);
-    delay = setTimeout(() => {
-      const { error } = validateEmail({ email: emailValue.current.value });
-      if (error) setEmailHasError(true);
-      if (!error) setEmailHasError(false);
-    }, 2000);
-  };
-
-  const checkPassword = () => {
-    const { error } = validatePassword({
-      password: passwordValue.current.value,
-    });
-    if (error) setPasswordHasError(true);
-    if (!error) setPasswordHasError(false);
-  };
-
-  const checkName = () => {
-    const { error } = validateName({
-      name: nameValue.current.value,
-    });
-    if (error) setNameHasError(true);
-    if (!error) setNameHasError(false);
-  };
+  const { checkEmail, checkPassword, checkName } = useInputChecker();
   const validForm = !emailHasError && !passwordHasError && !nameHasError;
 
   const handleSubmit = async (e) => {
@@ -53,7 +27,6 @@ function SignUp() {
       name: nameValue.current.value,
       biz: false,
     };
-
     try {
       const res = await httpRequest("POST", "api/users/", "", userInfo);
       toast(`${res.data.name} you successfully sign up `);
@@ -75,7 +48,7 @@ function SignUp() {
             </label>
             <br />
             <input
-              onChange={checkName}
+              onChange={checkName(setNameHasError, nameValue)}
               ref={nameValue}
               type="text"
               name="name"
@@ -95,7 +68,7 @@ function SignUp() {
             </label>
             <br />
             <input
-              onBlur={checkEmail}
+              onChange={checkEmail(setEmailHasError, emailValue)}
               ref={emailValue}
               type="text"
               name="email"
@@ -115,7 +88,7 @@ function SignUp() {
             </label>
             <br />
             <input
-              onChange={checkPassword}
+              onChange={checkPassword(setPasswordHasError, passwordValue)}
               ref={passwordValue}
               type="password"
               name="password"

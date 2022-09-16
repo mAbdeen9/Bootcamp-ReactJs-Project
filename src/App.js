@@ -3,9 +3,8 @@ import Container from "./components/Container/Container";
 import Header from "./components/Header/Header";
 import Router from "./components/Router/Router";
 import Footer from "./components/Footer/Footer";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import getUser from "./helpers/getUser";
+import MyToast from "./components/MyToast/MyToast";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -17,19 +16,9 @@ function App() {
 
   return (
     <Fragment>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        ltr
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <header>
         <Header user={user} />
+        <MyToast />
       </header>
       <main>
         <Container>
