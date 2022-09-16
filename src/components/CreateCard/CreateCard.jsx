@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import getToken from "../../helpers/getToken";
 import httpRequest from "../../helpers/httpReq";
@@ -9,6 +10,7 @@ import classes from "./CreateCard.module.css";
 
 function CreateCard() {
   const token = getToken();
+  const navigate = useNavigate();
   const nameValue = useRef();
   const descriptionValue = useRef();
   const addressValue = useRef();
@@ -34,6 +36,7 @@ function CreateCard() {
     try {
       await httpRequest("POST", "api/cards", token, cardInfo);
       toast("New Card Created 👍 ");
+      navigate("/my-cards");
     } catch (err) {
       toast(err.response.data);
     }
