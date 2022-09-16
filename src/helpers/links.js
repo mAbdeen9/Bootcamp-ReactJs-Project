@@ -56,7 +56,12 @@ function links(classes, handelShowMenu, signOut) {
     classes: classes,
   });
 
-  return { home, about, SignIn, SignUp, SignUpBiz, SignOut };
+  const MyCard = myLink({
+    link: <span> My Cards </span>,
+    path: "/my-cards",
+    classes: classes,
+  });
+  return { home, about, SignIn, SignUp, SignUpBiz, SignOut, MyCard };
 }
 
 export default links;

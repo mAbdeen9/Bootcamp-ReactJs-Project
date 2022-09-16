@@ -10,7 +10,7 @@ function useInputChecker() {
       let delay;
       clearTimeout(delay);
       delay = setTimeout(() => {
-        const { error } = validateEmail({ email: value.current.value });
+        const { error } = validateEmail({ email: value.current?.value });
         if (error) set(true);
         if (!error) set(false);
       }, 1000);
@@ -22,7 +22,7 @@ function useInputChecker() {
     const value = inputValue;
     return () => {
       const { error } = validatePassword({
-        password: value.current.value,
+        password: value.current?.value,
       });
       if (error) set(true);
       if (!error) set(false);
@@ -34,14 +34,26 @@ function useInputChecker() {
     const value = inputValue;
     return () => {
       const { error } = validateName({
-        name: value.current.value,
+        name: value.current?.value,
       });
       if (error) set(true);
       if (!error) set(false);
     };
   };
 
-  return { checkEmail, checkPassword, checkName };
+  const checkDescription = (setError, inputValue) => {
+    const set = (val) => setError(() => val);
+    const value = inputValue;
+    return () => {
+      const { error } = validateName({
+        name: value.current?.value,
+      });
+      if (error) set(true);
+      if (!error) set(false);
+    };
+  };
+
+  return { checkEmail, checkPassword, checkName, checkDescription };
 }
 
 export default useInputChecker;

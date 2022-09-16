@@ -14,7 +14,7 @@ function Header({ user }) {
     window.location.reload(true);
   };
   const handelShowMenu = () => setShowMenu((state) => !state);
-  const { home, about, SignIn, SignUp, SignUpBiz, SignOut } = links(
+  const { home, about, SignIn, SignUp, SignUpBiz, SignOut, MyCard } = links(
     classes,
     handelShowMenu,
     signOut
@@ -28,6 +28,7 @@ function Header({ user }) {
             <div>
               {home}
               {about}
+              {user?.biz && MyCard}
             </div>
             <div className={classes.links}>
               {!user && SignIn}

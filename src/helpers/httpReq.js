@@ -6,7 +6,7 @@ const httpRequest = async (method, endPoint, token = "", data = "") => {
     method: method,
     url: `${apiUrl.apiUrl}${endPoint}`,
     headers: {
-      token: token,
+      "x-auth-token": token,
     },
     data: data,
   });
