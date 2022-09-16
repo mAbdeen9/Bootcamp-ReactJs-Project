@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../Home/Home";
 import About from "../About/About";
 import SignIn from "../SignIn/SignIn";
@@ -18,7 +18,9 @@ function Router({ user }) {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-up-biz" element={<SignUpBiz />} />
         {user?.biz && <Route path="/create-card" element={<CreateCard />} />}
-        {user?.biz && <Route path="/" element={<CreateCard />} />}
+        {user?.biz && (
+          <Route path="/" element={<Navigate to={"/create-card"} />} />
+        )}
         {user?.biz && <Route path="/my-cards" element={<MyCards />} />}
         <Route path="*" element={<Home />} />
       </Routes>

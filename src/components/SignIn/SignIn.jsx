@@ -16,9 +16,13 @@ function SignIn() {
   const [passwordHasError, setPasswordHasError] = useState(false);
 
   const checkEmail = () => {
-    const { error } = validateEmail({ email: emailValue.current.value });
-    if (error) setEmailHasError(true);
-    if (!error) setEmailHasError(false);
+    let delay;
+    clearTimeout(delay);
+    delay = setTimeout(() => {
+      const { error } = validateEmail({ email: emailValue.current.value });
+      if (error) setEmailHasError(true);
+      if (!error) setEmailHasError(false);
+    }, 2000);
   };
 
   const checkPassword = () => {
@@ -63,7 +67,7 @@ function SignIn() {
             </label>
             <br />
             <input
-              onBlur={checkEmail}
+              onChange={checkEmail}
               ref={emailValue}
               type="text"
               name="email"

@@ -18,9 +18,13 @@ function SignUpBiz() {
   const [nameHasError, setNameHasError] = useState(false);
 
   const checkEmail = () => {
-    const { error } = validateEmail({ email: emailValue.current.value });
-    if (error) setEmailHasError(true);
-    if (!error) setEmailHasError(false);
+    let delay;
+    clearTimeout(delay);
+    delay = setTimeout(() => {
+      const { error } = validateEmail({ email: emailValue.current.value });
+      if (error) setEmailHasError(true);
+      if (!error) setEmailHasError(false);
+    }, 2000);
   };
 
   const checkPassword = () => {
