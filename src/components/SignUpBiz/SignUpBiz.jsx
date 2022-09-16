@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import httpRequest from "../../helpers/httpReq";
-import useValidate from "../../hooks/useValidate";
+import useInputChecker from "../../hooks/useInputChecker";
 import classes from "./SignUpBiz.module.css";
 
 function SignUpBiz() {
@@ -12,50 +12,24 @@ function SignUpBiz() {
   const emailValue = useRef();
   const passwordValue = useRef();
   const nameValue = useRef();
-  const { validateEmail, validatePassword, validateName } = useValidate();
   const [emailHasError, setEmailHasError] = useState(false);
   const [passwordHasError, setPasswordHasError] = useState(false);
   const [nameHasError, setNameHasError] = useState(false);
-
-  const checkEmail = () => {
-    let delay;
-    clearTimeout(delay);
-    delay = setTimeout(() => {
-      const { error } = validateEmail({ email: emailValue.current.value });
-      if (error) setEmailHasError(true);
-      if (!error) setEmailHasError(false);
-    }, 2000);
-  };
-
-  const checkPassword = () => {
-    const { error } = validatePassword({
-      password: passwordValue.current.value,
-    });
-    if (error) setPasswordHasError(true);
-    if (!error) setPasswordHasError(false);
-  };
-  const checkName = () => {
-    const { error } = validateName({
-      name: nameValue.current.value,
-    });
-    if (error) setNameHasError(true);
-    if (!error) setNameHasError(false);
-  };
+  const { checkEmail, checkPassword, checkName } = useInputChecker();
   const validForm = !emailHasError && !passwordHasError && !nameHasError;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validForm) return;
     const userInfo = {
-      email: emailValue.current.value,
-      password: passwordValue.current.value,
-      name: nameValue.current.value,
+      email: emailValue.current?.value,
+      password: passwordValue?.current?.value,
+      name: nameValue.current?.value,
       biz: true,
     };
-
     try {
       const res = await httpRequest("POST", "api/users/", "", userInfo);
-      toast(`${res.data.name} you successfully sign up  `);
+      toast(`${res.data.name} you successfully sign up`);
       navigate("/sign-in");
     } catch (err) {
       toast(err.response.data);
@@ -69,12 +43,12 @@ function SignUpBiz() {
       <form onSubmit={handleSubmit}>
         <div className={classes.form_box}>
           <div>
-            <label htmlFor="email">
+            <label htmlFor="name">
               Name <i className="bi bi-person"></i>
             </label>
             <br />
             <input
-              onChange={checkName}
+              onChange={checkName(setNameHasError, nameValue)}
               ref={nameValue}
               type="text"
               name="name"
@@ -94,7 +68,7 @@ function SignUpBiz() {
             </label>
             <br />
             <input
-              onBlur={checkEmail}
+              onChange={checkEmail(setEmailHasError, emailValue)}
               ref={emailValue}
               type="text"
               name="email"
@@ -109,12 +83,12 @@ function SignUpBiz() {
             )}
           </div>
           <div>
-            <label htmlFor="email">
+            <label htmlFor="password">
               Password <i className="bi bi-key"></i>
             </label>
             <br />
             <input
-              onChange={checkPassword}
+              onChange={checkPassword(setPasswordHasError, passwordValue)}
               ref={passwordValue}
               type="password"
               name="password"
