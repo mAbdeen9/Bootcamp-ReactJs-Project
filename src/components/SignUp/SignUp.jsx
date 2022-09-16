@@ -6,6 +6,7 @@ import httpRequest from "../../helpers/httpReq";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import useInputChecker from "../../hooks/useInputChecker";
+import InputField from "../InputField/InputField";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -42,67 +43,45 @@ function SignUp() {
       <h3>Open a new account, It's free 🤩 </h3>
       <form onSubmit={handleSubmit}>
         <div className={classes.form_box}>
-          <div>
-            <label htmlFor="email">
-              Name <i className="bi bi-person"></i>
-            </label>
-            <br />
-            <input
-              onChange={checkName(setNameHasError, nameValue)}
-              ref={nameValue}
-              type="text"
-              name="name"
-              id="name"
-              placeholder="name"
-            />
-            <br />
-            {nameHasError && (
-              <span className={classes.invaild_email}>
-                "Name" length at least 2 characters
-              </span>
-            )}
-          </div>
-          <div>
-            <label htmlFor="email">
-              Email <i className="bi bi-envelope"></i>
-            </label>
-            <br />
-            <input
-              onChange={checkEmail(setEmailHasError, emailValue)}
-              ref={emailValue}
-              type="text"
-              name="email"
-              id="email"
-              placeholder="email"
-            />
-            <br />
-            {emailHasError && (
-              <span className={classes.invaild_email}>
-                "Email" must be a valid email
-              </span>
-            )}
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password <i className="bi bi-key"></i>
-            </label>
-            <br />
-            <input
-              onChange={checkPassword(setPasswordHasError, passwordValue)}
-              ref={passwordValue}
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              maxLength={10}
-            />
-            <br />
-            {passwordHasError && (
-              <span className={classes.invaild_password}>
-                "Password" length at least 6 characters
-              </span>
-            )}
-          </div>
+          <InputField
+            htmlFor="name"
+            lable="Name"
+            handler={checkName}
+            inputValue={nameValue}
+            type="text"
+            id="name"
+            placeholder="name"
+            setError={setNameHasError}
+            InputHasError={nameHasError}
+            msg="length at least 2 characters"
+            emoji="bi bi-person"
+          />
+          <InputField
+            htmlFor="email"
+            lable="Email"
+            handler={checkEmail}
+            inputValue={emailValue}
+            type="text"
+            id="email"
+            placeholder="email"
+            setError={setEmailHasError}
+            InputHasError={emailHasError}
+            msg="must be a valid email"
+            emoji="bi bi-envelope"
+          />
+          <InputField
+            htmlFor="password"
+            lable="Password"
+            handler={checkPassword}
+            inputValue={passwordValue}
+            type="password"
+            id="password"
+            placeholder="password"
+            setError={setPasswordHasError}
+            InputHasError={passwordHasError}
+            msg="length at least 6 characters"
+            emoji="bi bi-key"
+          />
           <div>
             <button className={classes.btn}>Sign up</button>
           </div>

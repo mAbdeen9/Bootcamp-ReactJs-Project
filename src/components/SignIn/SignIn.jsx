@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import wait from "../../helpers/wait";
 import useInputChecker from "../../hooks/useInputChecker";
+import InputField from "../InputField/InputField";
 
 function SignIn() {
   const emailValue = useRef();
@@ -42,45 +43,32 @@ function SignIn() {
       </h1>
       <form onSubmit={handleSubmit}>
         <div className={classes.form_box}>
-          <div>
-            <label htmlFor="email">
-              Email <i className="bi bi-envelope"></i>
-            </label>
-            <br />
-            <input
-              onChange={checkEmail(setEmailHasError, emailValue)}
-              ref={emailValue}
-              type="text"
-              name="email"
-              id="email"
-              placeholder="email"
-            />
-            <br />
-            {emailHasError && (
-              <span className={classes.invaild_email}> invalid email !</span>
-            )}
-          </div>
-          <div>
-            <label htmlFor="email">
-              Password <i className="bi bi-key"></i>
-            </label>
-            <br />
-            <input
-              onChange={checkPassword(setPasswordHasError, passwordValue)}
-              ref={passwordValue}
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              maxLength={10}
-            />
-            <br />
-            {passwordHasError && (
-              <span className={classes.invaild_password}>
-                invalid password !
-              </span>
-            )}
-          </div>
+          <InputField
+            htmlFor="email"
+            lable="Email"
+            handler={checkEmail}
+            inputValue={emailValue}
+            type="email"
+            id="email"
+            placeholder="email"
+            setError={setEmailHasError}
+            InputHasError={emailHasError}
+            msg="invalid email !"
+            emoji="bi bi-envelope"
+          />
+          <InputField
+            htmlFor="password"
+            lable="Password"
+            handler={checkPassword}
+            inputValue={passwordValue}
+            type="Password"
+            id="Password"
+            placeholder="Password"
+            setError={setPasswordHasError}
+            InputHasError={passwordHasError}
+            msg="invalid password !"
+            emoji="bi bi-key"
+          />
           <div>
             <button className={classes.btn}>Sign in</button>
           </div>

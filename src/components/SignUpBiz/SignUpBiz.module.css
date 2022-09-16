@@ -21,16 +21,6 @@
   text-align: start;
 }
 
-.invaild_email {
-  color: #dc3444;
-  font-size: 15px;
-}
-
-.invaild_password {
-  color: #dc3444;
-  font-size: 15px;
-}
-
 .btn {
   padding: 5px 10px;
   border: none;
