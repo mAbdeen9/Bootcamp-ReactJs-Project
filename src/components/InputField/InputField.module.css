@@ -2,3 +2,10 @@
   color: #dc3444;
   font-size: 15px;
 }
+
+.in input {
+  padding: 4px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+}

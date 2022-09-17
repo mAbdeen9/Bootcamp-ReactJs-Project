@@ -1,0 +1,17 @@
+.box {
+  margin-top: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+.card_box {
+  display: flex;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: center;
+  min-height: 300px;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 7px;
+  padding-bottom: 10px;
+}

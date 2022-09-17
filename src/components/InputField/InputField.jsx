@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./InputField.module.css";
 function InputField(props) {
   return (
-    <div>
+    <div className={classes.in}>
       <label htmlFor={props.htmlFor}>
         {props.lable} <i className={props.emoji}></i>
       </label>

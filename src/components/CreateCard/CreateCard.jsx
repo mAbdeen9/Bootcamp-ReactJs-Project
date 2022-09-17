@@ -105,7 +105,7 @@ function CreateCard() {
             inputValue={imgValue}
             type="text"
             id="image"
-            placeholder="image URL"
+            placeholder="OPTIONAL 💥  image URL"
             setError={setImgHasErro}
             InputHasError={imgHasError}
             msg="must be minimum 2 characters"
