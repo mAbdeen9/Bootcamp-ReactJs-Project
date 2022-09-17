@@ -21,7 +21,7 @@ function CreateCard() {
   const [nameHassError, setNameHasError] = useState(false);
   const [desHassError, setDesHasError] = useState(false);
   const [addressHassError, setAddressHasError] = useState(false);
-  const { checkName, checkDescription } = useInputChecker();
+  const { checkName, checkDescription, checkPhone } = useInputChecker();
 
   const handleNewCard = async (e) => {
     e.preventDefault();
@@ -57,7 +57,7 @@ function CreateCard() {
             placeholder="name"
             setError={setNameHasError}
             InputHasError={nameHassError}
-            msg="must be minimum 2 characters"
+            msg="must be minimum 2 characters max 12"
           />
           <InputField
             htmlFor="Description"
@@ -69,7 +69,7 @@ function CreateCard() {
             placeholder="description"
             setError={setDesHasError}
             InputHasError={desHassError}
-            msg="must be minimum 2 characters"
+            msg="must be min 2 max 200 char"
           />
 
           <InputField
@@ -88,14 +88,14 @@ function CreateCard() {
           <InputField
             htmlFor="Phone"
             lable="Phone"
-            handler={checkDescription}
+            handler={checkPhone}
             inputValue={phoneValue}
             type="number"
             id="Phone"
             placeholder="Phone"
             setError={setPhoneHasError}
             InputHasError={phoneHasError}
-            msg="length at least 9 characters long"
+            msg="length at least 9 characters long max 12"
           />
 
           <InputField

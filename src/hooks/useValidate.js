@@ -10,6 +10,13 @@ function useValidate() {
     return rules.validate(name);
   };
 
+  const validateDes = (name) => {
+    const rules = Joi.object({
+      des: Joi.string().required().min(2).max(200),
+    });
+    return rules.validate(name);
+  };
+
   const validateEmail = (email) => {
     const rules = Joi.object({
       email: Joi.string().email({ tlds: { allow: false } }),
@@ -31,7 +38,13 @@ function useValidate() {
     return rules.validate(phone);
   };
 
-  return { validateEmail, validatePassword, validateName, validatePhone };
+  return {
+    validateEmail,
+    validatePassword,
+    validateName,
+    validatePhone,
+    validateDes,
+  };
 }
 
 export default useValidate;

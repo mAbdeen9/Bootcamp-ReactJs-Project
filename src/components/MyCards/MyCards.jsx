@@ -8,8 +8,10 @@ import classes from "./MyCards.module.css";
 import { toast } from "react-toastify";
 import OverLay from "../OverLay/OverLay";
 import UpdateCard from "../CreateCard/UpdateCard";
+import { useNavigate } from "react-router-dom";
 
 function MyCards() {
+  const nav = useNavigate();
   const token = getToken();
   const [cards, setCards] = useState([]);
   const [reload, setReload] = useState(1);
@@ -46,10 +48,20 @@ function MyCards() {
     };
   };
 
+  const handleNewCard = () => {
+    nav("/create-card");
+  };
+
   return (
     <div className={classes.box}>
       <h1>My Cards </h1>
-      <h3>Create new Card</h3>
+      <button
+        onClick={handleNewCard}
+        style={{ margin: "10px" }}
+        className="btn btn-warning"
+      >
+        <h4>Create new card </h4>
+      </button>
       <div className={classes.card_box}>
         {cards.length >= 1 ? (
           cards.map((card, i) => {
