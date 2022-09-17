@@ -1,0 +1,28 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 1100;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal {
+  position: fixed;
+  text-align: center;
+  top: 10vh;
+  left: 5%;
+  width: 90%;
+  background-color: #3c424a;
+  min-height: 50px;
+  padding: 1rem;
+  border-radius: 13px;
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 1200;
+  color: white;
+  font-family: "Varela Round", sans-serif;
+  -webkit-animation: slide-down 300ms ease-out forwards;
+  animation: slide-down 300ms ease-out forwards;
+}

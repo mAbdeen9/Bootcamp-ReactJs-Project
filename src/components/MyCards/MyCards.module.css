@@ -6,12 +6,12 @@
 
 .card_box {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   min-height: 300px;
   flex-wrap: wrap;
   width: 100%;
-  gap: 7px;
+  gap: 10px;
   padding-bottom: 10px;
 }

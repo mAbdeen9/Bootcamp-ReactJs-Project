@@ -11,7 +11,13 @@ function Card(props) {
           Address: {props.bizAddress}
         </p>
         <p className="card-text">{props.bizDescription}</p>
-        <button className="btn btn-primary">Edit card</button>
+        <button onClick={props.handleEdit} className="btn btn-primary">
+          Edit card
+        </button>
+        &nbsp;
+        <button onClick={props.handleDel} className="btn btn-danger">
+          Delete card
+        </button>
       </div>
     </div>
   );

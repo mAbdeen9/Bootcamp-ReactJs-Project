@@ -24,7 +24,14 @@ function useValidate() {
     return rules.validate(password);
   };
 
-  return { validateEmail, validatePassword, validateName };
+  const validatePhone = (phone) => {
+    const rules = Joi.object({
+      phone: Joi.string().required().min(6).max(12),
+    });
+    return rules.validate(phone);
+  };
+
+  return { validateEmail, validatePassword, validateName, validatePhone };
 }
 
 export default useValidate;

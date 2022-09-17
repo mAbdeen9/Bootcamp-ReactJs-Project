@@ -1,7 +1,8 @@
 import useValidate from "./useValidate";
 
 function useInputChecker() {
-  const { validateEmail, validatePassword, validateName } = useValidate();
+  const { validateEmail, validatePassword, validateName, validatePhone } =
+    useValidate();
 
   const checkEmail = (setError, inputValue) => {
     const set = (val) => setError(() => val);
@@ -53,7 +54,19 @@ function useInputChecker() {
     };
   };
 
-  return { checkEmail, checkPassword, checkName, checkDescription };
+  const checkPhone = (setError, inputValue) => {
+    const set = (val) => setError(() => val);
+    const value = inputValue;
+    return () => {
+      const { error } = validatePhone({
+        phone: value.current?.value,
+      });
+      if (error) set(true);
+      if (!error) set(false);
+    };
+  };
+
+  return { checkEmail, checkPassword, checkName, checkDescription, checkPhone };
 }
 
 export default useInputChecker;
