@@ -46,6 +46,7 @@ function UpdateCard({ card, triggerParent }) {
       <form onSubmit={handleUpdated}>
         <div className={classes.form_box}>
           <InputField
+            update={true}
             htmlFor="Name"
             lable="Name"
             handler={checkName}
@@ -59,6 +60,7 @@ function UpdateCard({ card, triggerParent }) {
             value={card.bizName}
           />
           <InputField
+            update={true}
             htmlFor="Description"
             lable="Description"
             handler={checkDescription}
@@ -87,6 +89,7 @@ function UpdateCard({ card, triggerParent }) {
           />
 
           <InputField
+            update={true}
             htmlFor="Phone"
             lable="Phone"
             handler={checkPhone}
@@ -101,6 +104,7 @@ function UpdateCard({ card, triggerParent }) {
           />
 
           <InputField
+            update={true}
             htmlFor="image"
             lable="Image"
             handler={checkDescription}

@@ -14,16 +14,27 @@ function InputField(props) {
         {props.lable} <i className={props.emoji}></i>
       </label>
       <br />
-      <input
-        onBlur={props.handler(props.setError, props.inputValue)}
-        ref={props.inputValue}
-        type={props.type}
-        name={props.name}
-        id={props.id}
-        placeholder={props.placeholder}
-        value={value}
-        onChange={setValues}
-      />
+      {props.update ? (
+        <input
+          ref={props.inputValue}
+          type={props.type}
+          name={props.name}
+          id={props.id}
+          placeholder={props.placeholder}
+          value={value}
+          onChange={setValues}
+          onBlur={props.handler(props.setError, props.inputValue)}
+        />
+      ) : (
+        <input
+          ref={props.inputValue}
+          type={props.type}
+          name={props.name}
+          id={props.id}
+          placeholder={props.placeholder}
+          onChange={props.handler(props.setError, props.inputValue)}
+        />
+      )}
       <br />
       {props.InputHasError && (
         <span className={classes.invaild}>
