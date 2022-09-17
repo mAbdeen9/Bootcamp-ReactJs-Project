@@ -32,6 +32,9 @@ function SignIn() {
       navigate("/", { replace: true });
       window.location.reload(true);
     } catch (err) {
+      if (err.message === "Network Error") {
+        toast(err.message);
+      }
       toast(err.response.data);
     }
   };

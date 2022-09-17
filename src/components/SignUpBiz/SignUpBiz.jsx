@@ -33,6 +33,9 @@ function SignUpBiz() {
       toast(`${res.data.name} you successfully sign up`);
       navigate("/sign-in");
     } catch (err) {
+      if (err.message === "Network Error") {
+        toast(err.message);
+      }
       toast(err.response.data);
     }
   };

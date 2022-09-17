@@ -27,7 +27,7 @@ function UpdateCard({ card, triggerParent }) {
     const cardInfo = {
       bizName: nameValue.current.value,
       bizDescription: descriptionValue.current.value,
-      bizAddress: addressValue.current.value,
+      bizAddress: addressValue.current?.value,
       bizPhone: phoneValue.current.value,
       bizImage: imgValue.current.value || undefined,
     };
@@ -75,8 +75,10 @@ function UpdateCard({ card, triggerParent }) {
           />
 
           <InputField
+            update={true}
             htmlFor="Address"
             lable="Address"
+            value={card.bizAddress}
             handler={checkDescription}
             inputValue={addressValue}
             type="text"
@@ -85,7 +87,6 @@ function UpdateCard({ card, triggerParent }) {
             setError={setAddressHasError}
             InputHasError={addressHassError}
             msg="must be minimum 2 characters"
-            value={card.bizAddress}
           />
 
           <InputField
